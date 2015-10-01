@@ -1,10 +1,10 @@
 var mongoose = require('mongoose');
 
 var propertySchema =  mongoose.Schema({
-  // manager: {user,//?}
+  manager: [{type: mongoose.Schema.ObjectId, ref: 'user'}]
   name: String,
   address: String,
-  // apartments: [{type:Object Apartment}]
+  apartments: [{type: mongoose.Schema.ObjectId, ref: 'Apartment'}]
 });
 
 //model
