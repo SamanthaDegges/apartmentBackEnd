@@ -1,9 +1,10 @@
 var mongoose = require('mongoose');
 
 var userSchema =  mongoose.Schema({
-  isManager: Boolean,
-  name: String,
-  email: String
+  isManager: {type: Boolean, default: false},
+  name: {type: String, required: true},
+  email: {type: String, required: true},
+  password: {type: String, required: true}
 });
 
 //model

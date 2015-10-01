@@ -15,15 +15,15 @@ module.exports = function(passport){
 
 	/* Handle Login POST */
 	router.post('/login', passport.authenticate('login', {
-		successRedirect: 'http://localhost/8000/home', //frontend stuff
-		failureRedirect: 'http://localhost/8000', //frontend stuff
+		successRedirect: 'http://localhost:8000/home', //frontend stuff
+		failureRedirect: 'http://localhost:8000', //frontend stuff
 		failureFlash : true
 	}));
 
 	/* Handle Registration POST */
 	router.post('/signup', passport.authenticate('signup', {
-		successRedirect: 'http://localhost/8000/home', //redirect to manage page (frontend)
-		failureRedirect: 'http://localhost/8000/signup', //redirect to signup page (frontend)
+		successRedirect: '/home', //redirect to manage page (frontend)
+		failureRedirect: '/register', //redirect to signup page (frontend)
 		failureFlash : true
 	}));
 

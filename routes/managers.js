@@ -8,7 +8,7 @@ var Apartment = require('../models/apartments');
 /* GET users listing. */
 
 //gets users to be diplayed on a page
-router.get('/', function(req, res, next) {
+router.get('/users', function(req, res, next) {
   User.find(function(err, data) {
     console.log(data);
     res.send(data);
@@ -29,6 +29,13 @@ router.post('/newProperty', function(req, res, next) {
   });
 });
 
+router.get('/properties', function(req, res, next) {
+  Property.find(function(err, data) {
+    console.log(data);
+    res.send(data);
+  });
+});
+
 router.delete('/property/:propertyId', function(req, res) {
   Property.findByIdAndRemove(req.params.propertyId, function(err, deletedProperty) {
     res.status(err ? 400 : 200).send(err || deletedProperty);
@@ -38,6 +45,14 @@ router.delete('/property/:propertyId', function(req, res) {
 
 
 //apartments crud
+router.get('/apartments', function(req, res, next) {
+  Apartment.find(function(err, data) {
+    console.log(data);
+    res.send(data);
+  });
+});
+
+
 router.post('/newApartment', function(req, res, next) {
   Apartment.create(req.body, function(err, savedApartment) {
     res.status(err ? 400 : 200).send(err || savedApartment);
