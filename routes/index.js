@@ -8,22 +8,33 @@ var isAuthenticated = function (req, res, next) {
 	if (req.isAuthenticated())
 		return next();
 	// if the user is not authenticated then redirect him to the login page
-	res.redirect('/');
+	res.redirect('http://localhost:8000/login');
 }
 
 module.exports = function(passport){
 
+	/* GET login page. */
+router.get('/', function(req, res) {
+		// Display the Login page with any flash message, if any
+	res.render('index', { message: req.flash('message') });
+});
+
 	/* Handle Login POST */
 	router.post('/login', passport.authenticate('login', {
-		successRedirect: 'http://localhost:8000/home', //frontend stuff
-		failureRedirect: 'http://localhost:8000', //frontend stuff
+		successRedirect: '/home',
+		failureRedirect: '/',
 		failureFlash : true
 	}));
 
+	/* GET Registration Page */
+router.get('/signup', function(req, res){
+	res.render('register',{message: req.flash('message')});
+});
+
 	/* Handle Registration POST */
 	router.post('/signup', passport.authenticate('signup', {
-		successRedirect: '/home', //redirect to manage page (frontend)
-		failureRedirect: '/register', //redirect to signup page (frontend)
+		successRedirect: '/home',
+		failureRedirect: '/signup',
 		failureFlash : true
 	}));
 
@@ -39,10 +50,10 @@ module.exports = function(passport){
 		console.log(passport);
 	});
 
-	// //manage page
-	// router.get('/manage', isAuthenticated, function(req, res) {
-	// 	res.send('manage')
-	// })
+	//manage page
+	// router.get('/manager', isAuthenticated, function(req, res) {
+	// 	res.send('manager')
+	// });
 
 	return router;
 }
