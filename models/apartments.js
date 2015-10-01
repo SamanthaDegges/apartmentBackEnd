@@ -6,8 +6,7 @@ var apartmentSchema =  mongoose.Schema({
   isAvail: {type: Boolean, default: true},
   sqFt: {type: Number, required: true},
   bedrooms: {type: Number, required: true},
-  tenants: Array
-  // tenants: [{type: mongoose.Schema.objectId, ref: 'User'}],
+  tenants: [{type: mongoose.Schema.objectId, ref: 'tenants'}]
 });
 
 var Apartment = mongoose.model('Apartment', apartmentSchema);
