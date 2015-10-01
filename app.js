@@ -7,16 +7,6 @@ var bodyParser = require('body-parser');
 
 var app = express();
 
-var corsMiddleware = function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With");
-  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
-  next();
-};
-
-app.use(corsMiddleware);
-
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
